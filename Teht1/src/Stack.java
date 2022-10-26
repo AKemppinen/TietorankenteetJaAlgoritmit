@@ -8,26 +8,35 @@ public class Stack {
     }
 
     public void push(String data) {
-
+        ListItem listItem = new ListItem(data, top);
+        top = listItem;
+        size++;
     }
 
     public ListItem pop() {
-        return null;
+        ListItem oldTop;
+        oldTop = top;
+        if(top != null) {
+            top = top.getNext();
+            size--;
+        }
+
+        return oldTop;
     }
 
-    public ListItem getTop() {
-        return top;
-    }
+    public void printItems() {
+        String items = "";
+        ListItem next = top;
 
-    public void setTop(ListItem top) {
-        this.top = top;
-    }
+        for(int i = 0; i < size; i++) {
+            items += next.getData() + "\n";
+            next = next.getNext();
+        }
+        System.out.println(items);
 
+    }
     public int getSize() {
         return size;
     }
 
-    public void setSize(int size) {
-        this.size = size;
-    }
 }
